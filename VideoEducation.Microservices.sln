@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35122.118
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{67105293-49A2-4F61-9736-36D353A49C55}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{D4E3C9A5-0357-40C9-B09D-E2CA6ED271C0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "catalog", "catalog", "{18C0E707-ADEA-4314-94EC-F90FEEAAAB83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoEducation.Microservices.Catalog.Api", "src\services\catalog\VideoEducation.Microservices.Catalog.Api\VideoEducation.Microservices.Catalog.Api.csproj", "{B79856DC-1A2D-41FD-A4A1-70DD2A6A760D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B79856DC-1A2D-41FD-A4A1-70DD2A6A760D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B79856DC-1A2D-41FD-A4A1-70DD2A6A760D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B79856DC-1A2D-41FD-A4A1-70DD2A6A760D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B79856DC-1A2D-41FD-A4A1-70DD2A6A760D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D4E3C9A5-0357-40C9-B09D-E2CA6ED271C0} = {67105293-49A2-4F61-9736-36D353A49C55}
+		{18C0E707-ADEA-4314-94EC-F90FEEAAAB83} = {D4E3C9A5-0357-40C9-B09D-E2CA6ED271C0}
+		{B79856DC-1A2D-41FD-A4A1-70DD2A6A760D} = {18C0E707-ADEA-4314-94EC-F90FEEAAAB83}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F60EC447-9091-48E1-BC4F-29DFAC81BA43}
+	EndGlobalSection
+EndGlobal
