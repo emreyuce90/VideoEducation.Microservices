@@ -7,6 +7,6 @@ namespace VideoEducation.Microservices.Catalog.Api.Features.Courses
     {
         public int Duration { get; set; }
         public float Rating { get; set; }
-        public string EducateorFullName { get; set; } = default!;
+        public string EducatorFullName { get; set; } = default!;
     }
 }
