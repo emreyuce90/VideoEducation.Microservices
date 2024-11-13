@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "catalog", "catalog", "{18C0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoEducation.Microservices.Catalog.Api", "src\services\catalog\VideoEducation.Microservices.Catalog.Api\VideoEducation.Microservices.Catalog.Api.csproj", "{B79856DC-1A2D-41FD-A4A1-70DD2A6A760D}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{F3E65827-DAF8-48F6-9D76-D196E2A9548A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B79856DC-1A2D-41FD-A4A1-70DD2A6A760D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B79856DC-1A2D-41FD-A4A1-70DD2A6A760D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B79856DC-1A2D-41FD-A4A1-70DD2A6A760D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3E65827-DAF8-48F6-9D76-D196E2A9548A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3E65827-DAF8-48F6-9D76-D196E2A9548A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3E65827-DAF8-48F6-9D76-D196E2A9548A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3E65827-DAF8-48F6-9D76-D196E2A9548A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
