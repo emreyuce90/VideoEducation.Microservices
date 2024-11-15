@@ -20,19 +20,13 @@ namespace VideoEducation.Microservices.Catalog.Api.Repositories {
             builder.Property(x => x.CreatedDate).HasElementName("createdDate");
             builder.Property(x => x.Picture).HasElementName("picture");
             builder.Property(x => x.Price).HasElementName("price");
-            builder.Property(x => x.Feature).HasElementName("feature");
             builder.Property(x => x.UserId).HasElementName("userId");
             //sql tarafında navigation propertyler otomatik algılanır ve tabloya yansıtılmaz fakat mongo db tarafında bizim bu propertyleri ignore ettiğimizi ayrıca bildirmemiz gerekir
             builder.Ignore(x => x.Category);
 
-            //feature entitysi kendisine ait idsi olmadığı için bir owned entitydir
+            
 
-            builder.OwnsOne<Feature>(c => c.Feature, f => {
-                f.HasElementName("feature");
-                f.Property(x => x.EducatorFullName).HasElementName("educatorFullName").HasMaxLength(100);
-                f.Property(x => x.Duration).HasElementName("duration");
-                f.Property(x => x.Rating).HasElementName("rating");
-            });
+          
         }
     }
 }

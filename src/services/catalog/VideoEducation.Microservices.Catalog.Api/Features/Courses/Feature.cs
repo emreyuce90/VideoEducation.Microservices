@@ -1,12 +1,12 @@
-﻿using VideoEducation.Microservices.Catalog.Api.Repositories;
+﻿using MongoDB.Bson.Serialization.Attributes;
 
-namespace VideoEducation.Microservices.Catalog.Api.Features.Courses
-{
-    //MongoDb kullandığımız için ekstradan Id kolonuna gerek yok,obje direkt olarak Course içerisinde obje olarak tutulacak
-    public class Feature
-    {
-        public int Duration { get; set; }
-        public float Rating { get; set; }
-        public string EducatorFullName { get; set; } = default!;
-    }
+public class Feature {
+    [BsonElement("educatorFullName")]
+    public string EducatorFullName { get; set; } = default!;
+
+    [BsonElement("duration")]
+    public int Duration { get; set; }
+
+    [BsonElement("rating")]
+    public double Rating { get; set; }
 }

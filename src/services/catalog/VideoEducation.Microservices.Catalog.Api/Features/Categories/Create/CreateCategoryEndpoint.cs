@@ -1,9 +1,10 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Runtime.CompilerServices;
-using VideoEducation.Microservices.Shared;
+using VideoEducation.Microservices.Shared.Extensions;
 
-namespace VideoEducation.Microservices.Catalog.Api.Features.Categories.Create {
+namespace VideoEducation.Microservices.Catalog.Api.Features.Categories.Create
+{
     public static class CreateCategoryEndpoint {
 
         public static  RouteGroupBuilder CreateCategoryGroupItem(this RouteGroupBuilder group) {
