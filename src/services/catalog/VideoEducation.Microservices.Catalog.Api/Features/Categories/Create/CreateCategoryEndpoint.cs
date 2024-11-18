@@ -1,7 +1,9 @@
-﻿using MediatR;
+﻿using FluentValidation.Results;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Runtime.CompilerServices;
 using VideoEducation.Microservices.Shared.Extensions;
+using VideoEducation.Microservices.Shared.Filters;
 
 namespace VideoEducation.Microservices.Catalog.Api.Features.Categories.Create
 {
@@ -11,7 +13,7 @@ namespace VideoEducation.Microservices.Catalog.Api.Features.Categories.Create
             group.MapPost("/", async (CreateCategoryCommand command,IMediator mediator) => {
                 var result = await mediator.Send(command);
                 return result.ToGenericResult();
-            });
+            }).AddEndpointFilter<ValidationFilter<CreateCategoryCommand>>();
 
             return group; 
         }

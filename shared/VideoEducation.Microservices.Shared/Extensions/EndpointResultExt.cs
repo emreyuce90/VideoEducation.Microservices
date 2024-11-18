@@ -15,8 +15,8 @@ namespace VideoEducation.Microservices.Shared.Extensions
             return serviceResult.Status switch
             {
 
-                HttpStatusCode.OK => Results.Ok(serviceResult),
-                HttpStatusCode.Created => Results.Created(serviceResult.Url, serviceResult),
+                HttpStatusCode.OK => Results.Ok(serviceResult.Data),
+                HttpStatusCode.Created => Results.Created(serviceResult.Url, serviceResult.Data),
                 HttpStatusCode.NotFound => Results.NotFound(serviceResult.Fail!),
                 //default case dir eğer yukarıdaki kısımlara uymaz ise aşağıdaki kod bloğu çalıştırılır
                 _ => Results.Problem(serviceResult.Fail!)

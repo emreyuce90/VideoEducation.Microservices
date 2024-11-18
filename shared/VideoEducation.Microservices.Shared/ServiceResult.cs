@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace VideoEducation.Microservices.Shared {
     public class ServiceResult {
         [JsonIgnore] public HttpStatusCode Status { get; set; }
-        public ProblemDetails? Fail { get; set; }
+        [JsonIgnore]public ProblemDetails? Fail { get; set; }
 
         [JsonIgnore] public bool IsSuccess => Fail is null;
         [JsonIgnore] public bool IsFail => !IsSuccess;
