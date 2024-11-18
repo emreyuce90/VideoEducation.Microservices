@@ -13,5 +13,5 @@ namespace VideoEducation.Microservices.Catalog.Api.Features.Categories.Create {
 
     //}
     //Kısa yazım şekli
-    public record CreateCategoryCommand(string Name):IRequest<ServiceResult<CreateCategoryResponse>>;
+    public record CreateCategoryCommand(string Name): IRequestServiceResult<CreateCategoryResponse>;
 }

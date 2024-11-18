@@ -8,10 +8,16 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 
 namespace VideoEducation.Microservices.Shared {
+
+
+    public interface IRequestServiceResult<T>:IRequest<ServiceResult<T>>;
+    public interface IRequestServiceResult:IRequest<ServiceResult>;
+  
     public class ServiceResult {
         [JsonIgnore] public HttpStatusCode Status { get; set; }
         [JsonIgnore]public ProblemDetails? Fail { get; set; }

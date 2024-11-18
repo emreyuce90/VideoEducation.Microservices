@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using VideoEducation.Microservices.Catalog.Api.Features.Categories.Create;
 using VideoEducation.Microservices.Catalog.Api.Features.Categories.Dtos;
@@ -11,20 +12,14 @@ namespace VideoEducation.Microservices.Catalog.Api.Features.Categories.GetAll {
 
     //Endpointimizde herhangi bir data beklemiyoruz
     //Geri dönüş değeri olarak CaegoryDto listesi döneceğiz
-    public record GetAllCategoryQuery() : IRequest<ServiceResult<List<CategoryDto>>>;
+    public record GetAllCategoryQuery() : IRequestServiceResult<List<CategoryDto>>;
 
-    public class GetAllCategoryHandler(AppDbContext context) : IRequestHandler<GetAllCategoryQuery, ServiceResult<List<CategoryDto>>> {
+    public class GetAllCategoryHandler(AppDbContext context,IMapper mapper) : IRequestHandler<GetAllCategoryQuery, ServiceResult<List<CategoryDto>>> {
         public async Task<ServiceResult<List<CategoryDto>>> Handle(GetAllCategoryQuery request, CancellationToken cancellationToken) {
 
-            var categories = await context.Categories.ToListAsync();
-            var categoryListDto = new List<CategoryDto>();
-            
-            foreach (var c in categories) {
-                var dto = new CategoryDto { Id = c.Id, Name = c.Name };
-                categoryListDto.Add(dto);
-            }
-
-            return ServiceResult<List<CategoryDto>>.SuccessAsOk(categoryListDto);
+            var categories = await context.Categories.ToListAsync(cancellationToken);
+           
+            return ServiceResult<List<CategoryDto>>.SuccessAsOk(mapper.Map<List<CategoryDto>>(categories));
         }
 
     }

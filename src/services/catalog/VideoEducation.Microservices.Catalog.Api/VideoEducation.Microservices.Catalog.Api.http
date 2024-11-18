@@ -1,6 +1,17 @@
-@hostaddress =http://localhost:5104
+@baseAddress = http://localhost:5104
+@categoryId = 08dd07f3-40fa-60ae-e880-88fd4e2e0000
 
-GET {{hostaddress}}/weatherforecast/
+GET {{baseAddress}}/api/categories
+Accept: application/json
+###
+POST {{baseAddress}}/api/categories
+Accept: application/json
+Content-Type:application/json
+{
+  "name":"Category4"
+}
+###
+GET {{baseAddress}}/api/categories/{{categoryId}}
 Accept: application/json
 
 ###

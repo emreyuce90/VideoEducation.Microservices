@@ -16,6 +16,8 @@ namespace VideoEducation.Microservices.Shared.Extensions {
             //FluentValidation Aspnet Core paketi yüklendi ve aşağıdaki konfigürasyonlar yapıldı
             services.AddFluentValidationAutoValidation();
             services.AddValidatorsFromAssemblyContaining(assembly);
+
+            services.AddAutoMapper(assembly);
             return services;
         }
     }
