@@ -1,5 +1,5 @@
 @baseAddress = http://localhost:5104
-@categoryId = 08dd07f3-40fa-60ae-e880-88fd4e2e0000
+@categoryId = 08dd07f3-40fa-60ae-e880-88fd4e2e000
 
 GET {{baseAddress}}/api/categories
 Accept: application/json
@@ -12,6 +12,10 @@ Content-Type:application/json
 }
 ###
 GET {{baseAddress}}/api/categories/{{categoryId}}
+Accept: application/json
+
+###
+DELETE {{baseAddress}}/api/categories/{{categoryId}}
 Accept: application/json
 
 ###

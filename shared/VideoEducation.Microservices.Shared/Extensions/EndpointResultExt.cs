@@ -17,7 +17,6 @@ namespace VideoEducation.Microservices.Shared.Extensions
 
                 HttpStatusCode.OK => Results.Ok(serviceResult.Data),
                 HttpStatusCode.Created => Results.Created(serviceResult.Url, serviceResult.Data),
-                HttpStatusCode.NotFound => Results.NotFound(serviceResult.Fail!),
                 //default case dir eğer yukarıdaki kısımlara uymaz ise aşağıdaki kod bloğu çalıştırılır
                 _ => Results.Problem(serviceResult.Fail!)
                 //null - forgiving operator derleyiciye buraya muhakak Fail in dolu geleceğini garanti ediyorum

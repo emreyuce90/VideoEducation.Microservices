@@ -1,4 +1,5 @@
 ﻿using VideoEducation.Microservices.Catalog.Api.Features.Categories.Create;
+using VideoEducation.Microservices.Catalog.Api.Features.Categories.Delete;
 using VideoEducation.Microservices.Catalog.Api.Features.Categories.GetAll;
 using VideoEducation.Microservices.Catalog.Api.Features.Categories.GetById;
 
@@ -9,7 +10,8 @@ namespace VideoEducation.Microservices.Catalog.Api.Features.Categories {
             application.MapGroup(prefix: "api/categories")
                 .CreateCategoryGroupItem()
                 .GetAllCategoryGroupItem()
-                .GetCategoryGroupItem();
+                .GetCategoryGroupItem()
+                .DeleteCategoryGroupItem();
         }
     }
 }
