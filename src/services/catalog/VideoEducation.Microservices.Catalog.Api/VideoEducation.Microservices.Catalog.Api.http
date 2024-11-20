@@ -19,3 +19,15 @@ DELETE {{baseAddress}}/api/categories/{{categoryId}}
 Accept: application/json
 
 ###
+
+PUT {{baseAddress}}/api/categories
+Accept: application/json
+Content-Type:application/json
+{
+     "categoryUpdateDto": {
+    "id": "08dd07f9-6247-1e6a-e880-88fd4e2e0000",
+    "name": "Category444"
+  }
+}
+
+###

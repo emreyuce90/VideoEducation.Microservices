@@ -6,6 +6,7 @@ namespace VideoEducation.Microservices.Catalog.Api.Features.Categories {
         public CategoryMapper()
         {
             CreateMap<Category, CategoryDto>().ReverseMap(); 
+            CreateMap<Category,CategoryUpdateDto>().ReverseMap();
         }
     }
 }

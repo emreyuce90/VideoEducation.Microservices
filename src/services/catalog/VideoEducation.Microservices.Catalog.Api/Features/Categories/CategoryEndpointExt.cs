@@ -2,6 +2,7 @@
 using VideoEducation.Microservices.Catalog.Api.Features.Categories.Delete;
 using VideoEducation.Microservices.Catalog.Api.Features.Categories.GetAll;
 using VideoEducation.Microservices.Catalog.Api.Features.Categories.GetById;
+using VideoEducation.Microservices.Catalog.Api.Features.Categories.Update;
 
 namespace VideoEducation.Microservices.Catalog.Api.Features.Categories {
     public static class CategoryEndpointExt {
@@ -11,7 +12,9 @@ namespace VideoEducation.Microservices.Catalog.Api.Features.Categories {
                 .CreateCategoryGroupItem()
                 .GetAllCategoryGroupItem()
                 .GetCategoryGroupItem()
-                .DeleteCategoryGroupItem();
+                .DeleteCategoryGroupItem()
+                .UpdateCategoryGroupItem();
+
         }
     }
 }
