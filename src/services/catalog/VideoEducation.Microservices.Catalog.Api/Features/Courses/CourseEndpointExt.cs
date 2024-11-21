@@ -4,6 +4,9 @@ using VideoEducation.Microservices.Catalog.Api.Features.Categories.GetAll;
 using VideoEducation.Microservices.Catalog.Api.Features.Categories.GetById;
 using VideoEducation.Microservices.Catalog.Api.Features.Categories.Update;
 using VideoEducation.Microservices.Catalog.Api.Features.Courses.Create;
+using VideoEducation.Microservices.Catalog.Api.Features.Courses.GetAll;
+using VideoEducation.Microservices.Catalog.Api.Features.Courses.GetById;
+using VideoEducation.Microservices.Catalog.Api.Features.Courses.Update;
 
 namespace VideoEducation.Microservices.Catalog.Api.Features.Courses {
     public static class CourseEndpointExt {
@@ -11,8 +14,12 @@ namespace VideoEducation.Microservices.Catalog.Api.Features.Courses {
             //Category ekleme apinin gruba dahil edilmesi
             application.MapGroup(prefix: "api/courses")
                 .WithTags("Courses")
-                .CreateCourseGroupItem();
-               
+                .CreateCourseGroupItem()
+                .GetAllCourseGroupItem()
+                .GetCourseByIdGroupItem()
+                .UpdateCourseGroupItem();
+
+
 
         }
     }

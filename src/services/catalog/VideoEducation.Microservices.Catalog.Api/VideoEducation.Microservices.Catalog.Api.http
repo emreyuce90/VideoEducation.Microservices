@@ -1,5 +1,6 @@
 @baseAddress = http://localhost:5104
 @categoryId = 08dd07f3-40fa-60ae-e880-88fd4e2e000
+@courseId = 08dd0970-c8ee-9a9b-e880-88fd4e2e0000
 
 GET {{baseAddress}}/api/categories
 Accept: application/json
@@ -35,8 +36,32 @@ POST {{baseAddress}}/api/courses
 Accept: application/json
 Content-Type:application/json
 {
-  "name": "",
+  "name": "Azure Devops",
   "description": "This course is very detailed",
-  "price": -10,
+  "price": 10,
   "categoryId": "08dd07f3-3509-6cf3-e880-88fd4e2e0000"
 }
+###
+
+GET {{baseAddress}}/api/courses/
+Accept: application/json
+
+###
+
+GET {{baseAddress}}/api/courses/{{courseId}}
+Accept: application/json
+
+###
+PUT {{baseAddress}}/api/courses
+Accept: application/json
+Content-Type:application/json
+{
+  "id": "08dd0970-c8ee-9a9b-e880-88fd4e2e0000",
+  "name": "Apache Kafka Course Updated",
+  "description": "This course is very detailed",
+  "price": 10,
+  "createdDate": "2024-11-20T14:36:56.693Z",
+  "categoryId": "08dd07f3-3509-6cf3-e880-88fd4e2e0000"
+}
+
+###

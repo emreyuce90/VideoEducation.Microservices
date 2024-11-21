@@ -5,7 +5,9 @@ namespace VideoEducation.Microservices.Catalog.Api.Features.Courses {
     public class CourseMapping:Profile {
         public CourseMapping()
         {
-            CreateMap<CreateCourseCommand, Course>().ReverseMap() ;
+            CreateMap<CreateCourseCommand, Course>().ReverseMap();
+            CreateMap<CourseDto, Course>().ReverseMap();
+
         }
     }
 }
