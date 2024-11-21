@@ -8,7 +8,7 @@ POST {{baseAddress}}/api/categories
 Accept: application/json
 Content-Type:application/json
 {
-  "name":"Category4"
+  "name":"Ca"
 }
 ###
 GET {{baseAddress}}/api/categories/{{categoryId}}
@@ -31,3 +31,12 @@ Content-Type:application/json
 }
 
 ###
+POST {{baseAddress}}/api/courses
+Accept: application/json
+Content-Type:application/json
+{
+  "name": "",
+  "description": "This course is very detailed",
+  "price": -10,
+  "categoryId": "08dd07f3-3509-6cf3-e880-88fd4e2e0000"
+}

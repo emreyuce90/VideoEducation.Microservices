@@ -18,7 +18,7 @@ namespace VideoEducation.Microservices.Catalog.Api.Repositories {
             builder.Property(x => x.Description).HasElementName("description").HasMaxLength(1000);
             builder.Property(x => x.CategoryId).HasElementName("categoryId");
             builder.Property(x => x.CreatedDate).HasElementName("createdDate");
-            builder.Property(x => x.Picture).HasElementName("picture");
+            builder.Property(x => x.PictureUrl).HasElementName("pictureUrl");
             builder.Property(x => x.Price).HasElementName("price");
             builder.Property(x => x.UserId).HasElementName("userId");
             //sql tarafında navigation propertyler otomatik algılanır ve tabloya yansıtılmaz fakat mongo db tarafında bizim bu propertyleri ignore ettiğimizi ayrıca bildirmemiz gerekir

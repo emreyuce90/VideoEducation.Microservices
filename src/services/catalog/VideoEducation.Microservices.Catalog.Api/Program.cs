@@ -1,5 +1,6 @@
 ﻿using MongoDB.Driver;
 using VideoEducation.Microservices.Catalog.Api.Features.Categories;
+using VideoEducation.Microservices.Catalog.Api.Features.Courses;
 using VideoEducation.Microservices.Catalog.Api.Options;
 using VideoEducation.Microservices.Catalog.Api.Repositories;
 using VideoEducation.Microservices.Shared.Extensions;
@@ -13,6 +14,7 @@ builder.Services.AddCommonServiceExt(typeof(Program));
 var app = builder.Build();
 
 app.AddCategoryGroupEndpointExt();
+app.AddCourseGroupEndpointExt();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment()) {
     app.UseSwagger();
