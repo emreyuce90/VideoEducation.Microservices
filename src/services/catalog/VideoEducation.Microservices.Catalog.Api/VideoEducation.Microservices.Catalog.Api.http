@@ -65,3 +65,6 @@ Content-Type:application/json
 }
 
 ###
+DELETE {{baseAddress}}/api/courses/08dd0a2b-f883-61ce-e880-88fd4e2e0000
+Accept: application/json
+###

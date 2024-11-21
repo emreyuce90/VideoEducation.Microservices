@@ -4,6 +4,7 @@ using VideoEducation.Microservices.Catalog.Api.Features.Categories.GetAll;
 using VideoEducation.Microservices.Catalog.Api.Features.Categories.GetById;
 using VideoEducation.Microservices.Catalog.Api.Features.Categories.Update;
 using VideoEducation.Microservices.Catalog.Api.Features.Courses.Create;
+using VideoEducation.Microservices.Catalog.Api.Features.Courses.Delete;
 using VideoEducation.Microservices.Catalog.Api.Features.Courses.GetAll;
 using VideoEducation.Microservices.Catalog.Api.Features.Courses.GetById;
 using VideoEducation.Microservices.Catalog.Api.Features.Courses.Update;
@@ -17,7 +18,8 @@ namespace VideoEducation.Microservices.Catalog.Api.Features.Courses {
                 .CreateCourseGroupItem()
                 .GetAllCourseGroupItem()
                 .GetCourseByIdGroupItem()
-                .UpdateCourseGroupItem();
+                .UpdateCourseGroupItem()
+                .DeleteCourseGroupItem();
 
 
 
