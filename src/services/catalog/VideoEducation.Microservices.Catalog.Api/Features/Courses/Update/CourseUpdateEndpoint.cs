@@ -3,12 +3,14 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
 using VideoEducation.Microservices.Catalog.Api.Features.Categories.GetAll;
+using VideoEducation.Microservices.Catalog.Api.Features.Courses.Dtos;
 using VideoEducation.Microservices.Catalog.Api.Repositories;
 using VideoEducation.Microservices.Shared;
 using VideoEducation.Microservices.Shared.Extensions;
 using VideoEducation.Microservices.Shared.Filters;
 
-namespace VideoEducation.Microservices.Catalog.Api.Features.Courses.Update {
+namespace VideoEducation.Microservices.Catalog.Api.Features.Courses.Update
+{
 
 
     public class CourseUpdateCommandHandler(AppDbContext context, IMapper mapper) : IRequestHandler<CourseUpdateCommand, ServiceResult<CourseDto>> {
@@ -24,7 +26,7 @@ namespace VideoEducation.Microservices.Catalog.Api.Features.Courses.Update {
 
             }
 
-            var course = await context.Courses.FirstOrDefaultAsync(c => c.Id == request.Id, cancellationToken);
+            var course = await context.Courses.FirstAsync(c => c.Id == request.Id, cancellationToken);
 
             course.Description = request.Description;
             course.Price = request.Price;
@@ -45,7 +47,7 @@ namespace VideoEducation.Microservices.Catalog.Api.Features.Courses.Update {
             group.MapPut("/", async (CourseUpdateCommand request, IMediator mediator) => {
                 var result = await mediator.Send(request);
                 return result.ToGenericResult();
-            }).AddEndpointFilter<ValidationFilter<CourseUpdateCommand>>();
+            }).AddEndpointFilter<ValidationFilter<CourseUpdateCommand>>().MapToApiVersion(1,0);
 
             return group;
         }

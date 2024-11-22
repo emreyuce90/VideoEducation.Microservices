@@ -11,10 +11,11 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddOptionsExt();
 builder.Services.AddDatabaseServiceExt();
 builder.Services.AddCommonServiceExt(typeof(Program));
+builder.Services.AddVersioningExt();
 var app = builder.Build();
 
-app.AddCategoryGroupEndpointExt();
-app.AddCourseGroupEndpointExt();
+app.AddCategoryGroupEndpointExt(app.AddVersionSetExt());
+app.AddCourseGroupEndpointExt(app.AddVersionSetExt());
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment()) {
     app.UseSwagger();

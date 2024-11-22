@@ -9,7 +9,7 @@ namespace VideoEducation.Microservices.Catalog.Api.Features.Categories.Update {
             group.MapPut("/", async (CategoryUpdateCommandRequest command, IMediator mediator) => {
                 var result = await mediator.Send(command);
                 return result.ToGenericResult();
-            }).AddEndpointFilter<ValidationFilter<CategoryUpdateDtoValidator>>();
+            }).AddEndpointFilter<ValidationFilter<CategoryUpdateDtoValidator>>().MapToApiVersion(1,0);
 
             return group;
         }

@@ -9,7 +9,7 @@ namespace VideoEducation.Microservices.Catalog.Api.Features.Courses.Create {
             group.MapPost("/", async (CreateCourseCommand command, IMediator mediator) => {
                 var result = await mediator.Send(command);
                 return result.ToGenericResult();
-            }).AddEndpointFilter<ValidationFilter<CreateCourseCommand>>();
+            }).AddEndpointFilter<ValidationFilter<CreateCourseCommand>>().MapToApiVersion(1,0);
 
             return group;
         }

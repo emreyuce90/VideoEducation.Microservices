@@ -36,7 +36,7 @@ namespace VideoEducation.Microservices.Catalog.Api.Features.Categories.Delete {
             group.MapDelete("/{id:guid}", async (Guid Id,IMediator mediator) => {
                 var result = await mediator.Send(new DeleteCategoryCommand(Id));
                return result.ToGenericResult();
-            });
+            }).MapToApiVersion(1,0);
 
             return group;
         }

@@ -10,7 +10,7 @@ namespace VideoEducation.Microservices.Catalog.Api.Features.Categories.GetById {
                 group.MapGet("/{id:guid}", async (Guid Id,IMediator mediator) => {
                     var result = await mediator.Send(new GetCategoryQuery(Id));
                     return result.ToGenericResult();
-                });
+                }).MapToApiVersion(1.0);
 
                 return group;
             }
