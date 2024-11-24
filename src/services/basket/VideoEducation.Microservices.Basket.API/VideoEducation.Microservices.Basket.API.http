@@ -1,0 +1,6 @@
+@VideoEducation.Microservices.Basket.API_HostAddress = http://localhost:5160
+
+GET {{VideoEducation.Microservices.Basket.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

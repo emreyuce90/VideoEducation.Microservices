@@ -15,7 +15,11 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared", "shared", "{3DB832E2-7A66-4C3E-80F9-047D430BE213}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoEducation.Microservices.Shared", "shared\VideoEducation.Microservices.Shared\VideoEducation.Microservices.Shared.csproj", "{7764CD41-1B61-4439-AD75-B5D5A5EB0909}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VideoEducation.Microservices.Shared", "shared\VideoEducation.Microservices.Shared\VideoEducation.Microservices.Shared.csproj", "{7764CD41-1B61-4439-AD75-B5D5A5EB0909}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "basket", "basket", "{A22F62C4-2C7E-4EDA-9E28-B7312F175102}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoEducation.Microservices.Basket.API", "src\services\basket\VideoEducation.Microservices.Basket.API\VideoEducation.Microservices.Basket.API.csproj", "{B026984C-F9D1-41C1-825C-79F18570F663}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +39,10 @@ Global
 		{7764CD41-1B61-4439-AD75-B5D5A5EB0909}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7764CD41-1B61-4439-AD75-B5D5A5EB0909}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7764CD41-1B61-4439-AD75-B5D5A5EB0909}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B026984C-F9D1-41C1-825C-79F18570F663}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B026984C-F9D1-41C1-825C-79F18570F663}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B026984C-F9D1-41C1-825C-79F18570F663}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B026984C-F9D1-41C1-825C-79F18570F663}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -45,6 +53,8 @@ Global
 		{B79856DC-1A2D-41FD-A4A1-70DD2A6A760D} = {18C0E707-ADEA-4314-94EC-F90FEEAAAB83}
 		{3DB832E2-7A66-4C3E-80F9-047D430BE213} = {67105293-49A2-4F61-9736-36D353A49C55}
 		{7764CD41-1B61-4439-AD75-B5D5A5EB0909} = {3DB832E2-7A66-4C3E-80F9-047D430BE213}
+		{A22F62C4-2C7E-4EDA-9E28-B7312F175102} = {D4E3C9A5-0357-40C9-B09D-E2CA6ED271C0}
+		{B026984C-F9D1-41C1-825C-79F18570F663} = {A22F62C4-2C7E-4EDA-9E28-B7312F175102}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F60EC447-9091-48E1-BC4F-29DFAC81BA43}
