@@ -1,3 +1,4 @@
+using VideoEducation.Microservices.Basket.API.Features.Baskets;
 using VideoEducation.Microservices.Shared.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,8 +11,9 @@ builder.Services.AddCommonServiceExt(typeof(Program));
 builder.Services.AddStackExchangeRedisCache(options => {
     options.Configuration = builder.Configuration.GetConnectionString("Redis");
 });
+builder.Services.AddVersioningExt();
 var app = builder.Build();
-
+app.AddBasketGroupEndpointExt(app.AddVersionSetExt());
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment()) {
     app.UseSwagger();

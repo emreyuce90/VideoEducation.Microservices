@@ -5,8 +5,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
+using VideoEducation.Microservices.Shared.Services;
 
 namespace VideoEducation.Microservices.Shared.Extensions {
     public static class CommonServiceExt {
@@ -18,6 +20,7 @@ namespace VideoEducation.Microservices.Shared.Extensions {
             services.AddValidatorsFromAssemblyContaining(assembly);
 
             services.AddAutoMapper(assembly);
+            services.AddScoped<IIdentityService, IdentityService>();
             return services;
         }
     }

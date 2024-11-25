@@ -4,17 +4,18 @@ using System.Text.Json;
 using VideoEducation.Microservices.Basket.API.Constants;
 using VideoEducation.Microservices.Basket.API.Features.Baskets.Dtos;
 using VideoEducation.Microservices.Shared;
+using VideoEducation.Microservices.Shared.Services;
 
 namespace VideoEducation.Microservices.Basket.API.Features.Baskets.Create {
-    public class CreateBasketCommandHandler(IDistributedCache distributedCache) : IRequestHandler<CreateBasketCommand, ServiceResult> {
+    public class CreateBasketCommandHandler(IDistributedCache distributedCache,IIdentityService identityService) : IRequestHandler<CreateBasketCommand, ServiceResult> {
         public async Task<ServiceResult> Handle(CreateBasketCommand request, CancellationToken cancellationToken) {
-            var userId = Guid.NewGuid(); //xDWPgq7B4oX1cpiXNl798hD5Xp
+            var userId = identityService.UserId; //xDWPgq7B4oX1cpiXNl798hD5Xp
             var cachedKey = String.Format(CacheKey.GetCacheKey, userId.ToString()); //Basket:xDWPgq7B4oX1cpiXNl798hD5Xp
             var basketAsString = await distributedCache.GetStringAsync(cachedKey, cancellationToken);
 
             BasketDto? currentBasket;
 
-            BasketItemDto newItem = new(request.courseId, request.courseName, request.coursePrice, request.discountedPrice, request.ImageUrl);
+            BasketItemDto newItem = new(request.courseId, request.courseName, request.coursePrice, null, request.ImageUrl);
 
             if (String.IsNullOrEmpty(basketAsString)) {
                 currentBasket = new BasketDto(userId, [newItem]);
@@ -33,7 +34,7 @@ namespace VideoEducation.Microservices.Basket.API.Features.Baskets.Create {
         }
         private async Task<ServiceResult> WriteDataToCacheAndReturnSuccess(BasketDto basketDto, string cachedKey, CancellationToken cancellationToken) {
             var serializedData = JsonSerializer.Serialize<BasketDto>(basketDto);
-            await distributedCache.SetStringAsync(cachedKey, serializedData, cancellationToken)
+            await distributedCache.SetStringAsync(cachedKey, serializedData, cancellationToken);
              return ServiceResult.SuccessAsNoContent();
         }
         //tekrar eden kodlar ortak private metoda alınır
