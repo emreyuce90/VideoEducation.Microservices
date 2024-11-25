@@ -22,8 +22,8 @@ namespace VideoEducation.Microservices.Basket.API.Features.Baskets.Delete {
                 return ServiceResult.Error("There is no such as userId in our database",$"The userId ({userId}) has no basket items",HttpStatusCode.NotFound);
             }
 
-            var convertedData = JsonSerializer.Deserialize<BasketDto>(cachedData);
-            var deletedItem = convertedData?.Items.FirstOrDefault(b=>b.courseId == request.courseId);
+            var convertedData = JsonSerializer.Deserialize<Basket>(cachedData);
+            var deletedItem = convertedData?.Items.FirstOrDefault(b=>b.Id == request.courseId);
             if (deletedItem is null) {
                 return ServiceResult.Error("There is no item in your basket",$"The courseId ({request.courseId}) not exist in your basket",HttpStatusCode.NotFound);
             }
@@ -34,7 +34,7 @@ namespace VideoEducation.Microservices.Basket.API.Features.Baskets.Delete {
             }
 
             convertedData.Items.Remove(deletedItem);
-            var jsondata = JsonSerializer.Serialize<BasketDto>(convertedData);
+            var jsondata = JsonSerializer.Serialize<Basket>(convertedData);
             await distributedCache.SetStringAsync(cacheKey, jsondata,cancellationToken);
             return ServiceResult.SuccessAsNoContent();
 

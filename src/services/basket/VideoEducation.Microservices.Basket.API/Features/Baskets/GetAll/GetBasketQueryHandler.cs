@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
 using System.Net;
@@ -12,15 +13,22 @@ using VideoEducation.Microservices.Shared.Filters;
 using VideoEducation.Microservices.Shared.Services;
 
 namespace VideoEducation.Microservices.Basket.API.Features.Baskets.GetAll {
-    public class GetBasketQueryHandler (IDistributedCache distributedCache,IIdentityService identityService): IRequestHandler<GetBasketQuery, ServiceResult<BasketDto>> {
+    public class GetBasketQueryHandler (IDistributedCache distributedCache,IIdentityService identityService,IMapper mapper): IRequestHandler<GetBasketQuery, ServiceResult<BasketDto>> {
         public async  Task<ServiceResult<BasketDto>> Handle(GetBasketQuery request, CancellationToken cancellationToken) {
            var cacheKey = CacheKeyHelper.GetCacheKey(identityService.UserId);
             var basket = await distributedCache.GetStringAsync(cacheKey,cancellationToken);
             if(basket is null) {
                 return ServiceResult<BasketDto>.Error("Basket not found",HttpStatusCode.NotFound);
             }
-            var basketDto = JsonSerializer.Deserialize<BasketDto>(basket,new JsonSerializerOptions { PropertyNameCaseInsensitive=true});
-            return ServiceResult<BasketDto>.SuccessAsOk(basketDto!);
+            var currentBasket = JsonSerializer.Deserialize<Basket>(basket);
+            var basketItemListDto = new List<BasketItemDto>();
+            foreach (var item in currentBasket.Items) {
+                var dto = new BasketItemDto(item.Id, item.Name,item.Price, item.DiscountedPrice, item.ImageUrl);
+                basketItemListDto.Add(dto);
+            }
+           
+            
+            return ServiceResult<BasketDto>.SuccessAsOk(new BasketDto(identityService.UserId,basketItemListDto));
         }
     }
 

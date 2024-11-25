@@ -5,7 +5,7 @@ namespace VideoEducation.Microservices.Basket.API.Features.Baskets.Dtos {
     //nesne örneği alındığında ıtemsları newler 
     public record BasketDto {
         [JsonIgnore]public Guid UserId { get; init; }
-        public List<BasketItemDto> Items { get; set; }
+        public List<BasketItemDto> Items { get; set; } = new();
 
         public BasketDto(Guid userId,List<BasketItemDto> items)
         {
@@ -15,8 +15,6 @@ namespace VideoEducation.Microservices.Basket.API.Features.Baskets.Dtos {
 
         public BasketDto()
         {
-            Items = new List<BasketItemDto>();
-
         }
 
 

@@ -13,16 +13,16 @@ namespace VideoEducation.Microservices.Basket.API.Features.Baskets.Create {
             var cachedKey = String.Format(CacheKey.GetCacheKey, userId.ToString()); //Basket:xDWPgq7B4oX1cpiXNl798hD5Xp
             var basketAsString = await distributedCache.GetStringAsync(cachedKey, cancellationToken);
 
-            BasketDto? currentBasket;
+            Basket currentBasket;
 
-            BasketItemDto newItem = new(request.courseId, request.courseName, request.coursePrice, null, request.ImageUrl);
+            BasketItem newItem = new(request.courseId, request.courseName, request.coursePrice, null, request.ImageUrl);
 
             if (String.IsNullOrEmpty(basketAsString)) {
-                currentBasket = new BasketDto(userId, [newItem]);
+                currentBasket = new Basket(userId, [newItem]);
                 return await WriteDataToCacheAndReturnSuccess(currentBasket, cachedKey, cancellationToken);
             }
-            currentBasket = JsonSerializer.Deserialize<BasketDto>(basketAsString);
-            var isSameCourse = currentBasket!.Items.FirstOrDefault(c => c.courseId == request.courseId);
+            currentBasket = JsonSerializer.Deserialize<Basket>(basketAsString);
+            var isSameCourse = currentBasket!.Items.FirstOrDefault(c => c.Id == request.courseId);
             if (isSameCourse is not null) {
 
                 currentBasket.Items.Remove(isSameCourse);
@@ -32,8 +32,8 @@ namespace VideoEducation.Microservices.Basket.API.Features.Baskets.Create {
             return await WriteDataToCacheAndReturnSuccess(currentBasket, cachedKey, cancellationToken);
 
         }
-        private async Task<ServiceResult> WriteDataToCacheAndReturnSuccess(BasketDto basketDto, string cachedKey, CancellationToken cancellationToken) {
-            var serializedData = JsonSerializer.Serialize<BasketDto>(basketDto);
+        private async Task<ServiceResult> WriteDataToCacheAndReturnSuccess(Basket basket, string cachedKey, CancellationToken cancellationToken) {
+            var serializedData = JsonSerializer.Serialize<Basket>(basket);
             await distributedCache.SetStringAsync(cachedKey, serializedData, cancellationToken);
              return ServiceResult.SuccessAsNoContent();
         }
