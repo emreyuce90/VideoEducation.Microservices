@@ -23,17 +23,17 @@ namespace VideoEducation.Microservices.Basket.API.Features.Baskets.Delete {
             }
 
             var convertedData = JsonSerializer.Deserialize<BasketDto>(cachedData);
-            var deletedItem = convertedData?.items.FirstOrDefault(b=>b.courseId == request.courseId);
+            var deletedItem = convertedData?.Items.FirstOrDefault(b=>b.courseId == request.courseId);
             if (deletedItem is null) {
                 return ServiceResult.Error("There is no item in your basket",$"The courseId ({request.courseId}) not exist in your basket",HttpStatusCode.NotFound);
             }
 
-            if (convertedData!.items.Count() <= 1) { 
+            if (convertedData!.Items.Count() <= 1) { 
                 await distributedCache.RemoveAsync(cacheKey, cancellationToken);
                 return ServiceResult.SuccessAsNoContent();
             }
 
-            convertedData.items.Remove(deletedItem);
+            convertedData.Items.Remove(deletedItem);
             var jsondata = JsonSerializer.Serialize<BasketDto>(convertedData);
             await distributedCache.SetStringAsync(cacheKey, jsondata,cancellationToken);
             return ServiceResult.SuccessAsNoContent();

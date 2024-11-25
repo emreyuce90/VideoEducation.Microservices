@@ -22,12 +22,12 @@ namespace VideoEducation.Microservices.Basket.API.Features.Baskets.Create {
                 return await WriteDataToCacheAndReturnSuccess(currentBasket, cachedKey, cancellationToken);
             }
             currentBasket = JsonSerializer.Deserialize<BasketDto>(basketAsString);
-            var isSameCourse = currentBasket!.items.FirstOrDefault(c => c.courseId == request.courseId);
+            var isSameCourse = currentBasket!.Items.FirstOrDefault(c => c.courseId == request.courseId);
             if (isSameCourse is not null) {
 
-                currentBasket.items.Remove(isSameCourse);
+                currentBasket.Items.Remove(isSameCourse);
             }
-            currentBasket.items.Add(newItem);
+            currentBasket.Items.Add(newItem);
 
             return await WriteDataToCacheAndReturnSuccess(currentBasket, cachedKey, cancellationToken);
 

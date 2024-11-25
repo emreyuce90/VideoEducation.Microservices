@@ -3,6 +3,7 @@ using Asp.Versioning.Builder;
 using System.Runtime.CompilerServices;
 using VideoEducation.Microservices.Basket.API.Features.Baskets.Create;
 using VideoEducation.Microservices.Basket.API.Features.Baskets.Delete;
+using VideoEducation.Microservices.Basket.API.Features.Baskets.GetAll;
 
 namespace VideoEducation.Microservices.Basket.API.Features.Baskets {
     public static class BasketEndpointExt {
@@ -11,7 +12,9 @@ namespace VideoEducation.Microservices.Basket.API.Features.Baskets {
                 .WithTags("Baskets")
                 .WithApiVersionSet(apiVersionSet)
                 .CreateBasketGroupItem()
-                .DeleteBasketGroupItem();
+                .DeleteBasketGroupItem()
+                .GetBasketGroupItem();
+
         }
     }
 }
