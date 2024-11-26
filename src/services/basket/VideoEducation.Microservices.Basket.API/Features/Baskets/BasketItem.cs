@@ -15,6 +15,11 @@
             ImageUrl = imageUrl;
         }
 
+        public BasketItem()
+        {
+            
+        }
+
 
     }
 }

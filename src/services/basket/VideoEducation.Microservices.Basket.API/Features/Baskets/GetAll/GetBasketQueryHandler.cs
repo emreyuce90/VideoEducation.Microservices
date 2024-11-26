@@ -21,14 +21,8 @@ namespace VideoEducation.Microservices.Basket.API.Features.Baskets.GetAll {
                 return ServiceResult<BasketDto>.Error("Basket not found",HttpStatusCode.NotFound);
             }
             var currentBasket = JsonSerializer.Deserialize<Basket>(basket);
-            var basketItemListDto = new List<BasketItemDto>();
-            foreach (var item in currentBasket.Items) {
-                var dto = new BasketItemDto(item.Id, item.Name,item.Price, item.DiscountedPrice, item.ImageUrl);
-                basketItemListDto.Add(dto);
-            }
-           
-            
-            return ServiceResult<BasketDto>.SuccessAsOk(new BasketDto(identityService.UserId,basketItemListDto));
+           var mappedValue = mapper.Map<BasketDto>(currentBasket);
+            return ServiceResult<BasketDto>.SuccessAsOk(mappedValue);
         }
     }
 

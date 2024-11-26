@@ -7,7 +7,7 @@ using VideoEducation.Microservices.Shared;
 using VideoEducation.Microservices.Shared.Services;
 
 namespace VideoEducation.Microservices.Basket.API.Features.Baskets.Create {
-    public class CreateBasketCommandHandler(IDistributedCache distributedCache,IIdentityService identityService) : IRequestHandler<CreateBasketCommand, ServiceResult> {
+    public class CreateBasketCommandHandler(IDistributedCache distributedCache, IIdentityService identityService) : IRequestHandler<CreateBasketCommand, ServiceResult> {
         public async Task<ServiceResult> Handle(CreateBasketCommand request, CancellationToken cancellationToken) {
             var userId = identityService.UserId; //xDWPgq7B4oX1cpiXNl798hD5Xp
             var cachedKey = String.Format(CacheKey.GetCacheKey, userId.ToString()); //Basket:xDWPgq7B4oX1cpiXNl798hD5Xp
@@ -33,9 +33,11 @@ namespace VideoEducation.Microservices.Basket.API.Features.Baskets.Create {
 
         }
         private async Task<ServiceResult> WriteDataToCacheAndReturnSuccess(Basket basket, string cachedKey, CancellationToken cancellationToken) {
+            //check if discount 
+            basket.ApplyAvaliableDiscount();
             var serializedData = JsonSerializer.Serialize<Basket>(basket);
             await distributedCache.SetStringAsync(cachedKey, serializedData, cancellationToken);
-             return ServiceResult.SuccessAsNoContent();
+            return ServiceResult.SuccessAsNoContent();
         }
         //tekrar eden kodlar ortak private metoda alınır
         //programlamada fast fail esastır bir an önce cevabı döndürmeliyiz

@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Text.Json.Serialization;
 
 namespace VideoEducation.Microservices.Basket.API.Features.Baskets {
     //Anemic classtan rich domaine dönen class
@@ -18,14 +19,12 @@ namespace VideoEducation.Microservices.Basket.API.Features.Baskets {
         public float? DiscountRate { get; set; }
         public string? Coupon { get; set; }
 
-      
-
 
         //Eğer indirim oranı 0 dan büyükse ve kupon doluysa true döner
-        public bool IsDiscountApply => DiscountRate > 0 && !String.IsNullOrEmpty(Coupon);
+        [JsonIgnore] public bool IsDiscountApply => DiscountRate > 0 && !String.IsNullOrEmpty(Coupon);
         //Total price without disc
-        public decimal TotalPrice => Items.Sum(bi => bi.Price);
-        public decimal? TotalPriceWDiscount => !IsDiscountApply ? null : Items.Sum(x => x.DiscountedPrice);
+        [JsonIgnore] public decimal TotalPrice => Items.Sum(bi => bi.Price);
+        [JsonIgnore] public decimal? TotalPriceWDiscount => !IsDiscountApply ? null : Items.Sum(x => x.DiscountedPrice);
 
         public void ApplyNewDiscount(string coupone, float discountRate) {
             DiscountRate = discountRate;
@@ -38,6 +37,9 @@ namespace VideoEducation.Microservices.Basket.API.Features.Baskets {
         }
 
         public void ApplyAvaliableDiscount() {
+            if (!IsDiscountApply) {
+                return;
+            }
             foreach (var basketItem in Items) {
                 basketItem.DiscountedPrice = basketItem.Price * (decimal)(1 - DiscountRate!);
             }
@@ -46,10 +48,10 @@ namespace VideoEducation.Microservices.Basket.API.Features.Baskets {
         public void RemoveDiscount() {
             DiscountRate = null;
             Coupon = null;
-            foreach (var basketItem in Items) { 
-                basketItem.DiscountedPrice=null;
+            foreach (var basketItem in Items) {
+                basketItem.DiscountedPrice = null;
             }
         }
-        
+
     }
 }
