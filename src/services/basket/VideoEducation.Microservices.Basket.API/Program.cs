@@ -12,6 +12,7 @@ builder.Services.AddStackExchangeRedisCache(options => {
     options.Configuration = builder.Configuration.GetConnectionString("Redis");
 });
 builder.Services.AddVersioningExt();
+builder.Services.AddScoped<BasketService>();
 var app = builder.Build();
 app.AddBasketGroupEndpointExt(app.AddVersionSetExt());
 // Configure the HTTP request pipeline.

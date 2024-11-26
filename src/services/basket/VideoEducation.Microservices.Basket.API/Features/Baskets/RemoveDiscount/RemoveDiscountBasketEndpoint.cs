@@ -1,22 +1,17 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.Distributed;
 using System.Net;
 using System.Text.Json;
-using VideoEducation.Microservices.Basket.API.Features.Baskets.Create;
-using VideoEducation.Microservices.Basket.API.Helpers;
 using VideoEducation.Microservices.Shared;
 using VideoEducation.Microservices.Shared.Extensions;
-using VideoEducation.Microservices.Shared.Filters;
-using VideoEducation.Microservices.Shared.Services;
 
 namespace VideoEducation.Microservices.Basket.API.Features.Baskets.RemoveDiscount {
     public record RemoveDiscountBasketCommand :IRequestServiceResult;
 
-    public class RemoveDiscountBasketCommandHandler (IIdentityService identityService,IDistributedCache distributedCache): IRequestHandler<RemoveDiscountBasketCommand, ServiceResult> {
+    public class RemoveDiscountBasketCommandHandler (BasketService basketService): IRequestHandler<RemoveDiscountBasketCommand, ServiceResult> {
         public async Task<ServiceResult> Handle(RemoveDiscountBasketCommand request, CancellationToken cancellationToken) {
-            var cacheKey = CacheKeyHelper.GetCacheKey(identityService.UserId);
-            var basketAsJson = await distributedCache.GetStringAsync(cacheKey,cancellationToken);
+
+            var basketAsJson = await basketService.GetBasketCache(cancellationToken);
             
             if (basketAsJson is null) {
             return ServiceResult.Error("Basket not found",HttpStatusCode.NotFound);
@@ -28,8 +23,7 @@ namespace VideoEducation.Microservices.Basket.API.Features.Baskets.RemoveDiscoun
             }
 
             basket.RemoveDiscount();
-            basketAsJson = JsonSerializer.Serialize(basket);
-            await distributedCache.SetStringAsync(cacheKey, basketAsJson,cancellationToken);  
+            await basketService.CreateBasketCache(basket,cancellationToken);
             return ServiceResult.SuccessAsNoContent();
         }
     }

@@ -1,25 +1,19 @@
 ﻿using MediatR;
-using Microsoft.Extensions.Caching.Distributed;
 using System.Net;
 using System.Text.Json;
-using VideoEducation.Microservices.Basket.API.Constants;
-using VideoEducation.Microservices.Basket.API.Features.Baskets.Dtos;
 using VideoEducation.Microservices.Shared;
 using VideoEducation.Microservices.Shared.Extensions;
-using VideoEducation.Microservices.Shared.Filters;
-using VideoEducation.Microservices.Shared.Services;
 
 namespace VideoEducation.Microservices.Basket.API.Features.Baskets.Delete {
 
     public record DeleteBasketCommand(Guid courseId):IRequestServiceResult;
 
-    public class DeleteBasketCommandHandler(IDistributedCache distributedCache,IIdentityService identityService) : IRequestHandler<DeleteBasketCommand, ServiceResult> {
+    public class DeleteBasketCommandHandler(BasketService basketService) : IRequestHandler<DeleteBasketCommand, ServiceResult> {
         public async Task<ServiceResult> Handle(DeleteBasketCommand request, CancellationToken cancellationToken) {
-            var userId = identityService.UserId;
-            var cacheKey = String.Format(CacheKey.GetCacheKey,userId.ToString());
-            var cachedData = await distributedCache.GetStringAsync(cacheKey, cancellationToken);
+
+            var cachedData = await basketService.GetBasketCache(cancellationToken);
             if (cachedData == null) {
-                return ServiceResult.Error("There is no such as userId in our database",$"The userId ({userId}) has no basket items",HttpStatusCode.NotFound);
+                return ServiceResult.Error("There is no such as userId in our database",HttpStatusCode.NotFound);
             }
 
             var convertedData = JsonSerializer.Deserialize<Basket>(cachedData);
@@ -28,14 +22,13 @@ namespace VideoEducation.Microservices.Basket.API.Features.Baskets.Delete {
                 return ServiceResult.Error("There is no item in your basket",$"The courseId ({request.courseId}) not exist in your basket",HttpStatusCode.NotFound);
             }
 
-            if (convertedData!.Items.Count() <= 1) { 
-                await distributedCache.RemoveAsync(cacheKey, cancellationToken);
-                return ServiceResult.SuccessAsNoContent();
-            }
+            //if (convertedData!.Items.Count() <= 1) { 
+            //    await distributedCache.RemoveAsync(cacheKey, cancellationToken);
+            //    return ServiceResult.SuccessAsNoContent();
+            //}
 
-            convertedData.Items.Remove(deletedItem);
-            var jsondata = JsonSerializer.Serialize<Basket>(convertedData);
-            await distributedCache.SetStringAsync(cacheKey, jsondata,cancellationToken);
+            convertedData!.Items.Remove(deletedItem);
+            await basketService.CreateBasketCache(convertedData,cancellationToken);
             return ServiceResult.SuccessAsNoContent();
 
         }
