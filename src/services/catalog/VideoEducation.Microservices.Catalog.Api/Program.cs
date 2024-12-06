@@ -1,8 +1,7 @@
-﻿using MongoDB.Driver;
-using VideoEducation.Microservices.Catalog.Api.Features.Categories;
+﻿using VideoEducation.Microservices.Catalog.Api.Features.Categories;
+using VideoEducation.Microservices.Catalog.Api.Features.Categories.Ext;
 using VideoEducation.Microservices.Catalog.Api.Features.Courses;
 using VideoEducation.Microservices.Catalog.Api.Options;
-using VideoEducation.Microservices.Catalog.Api.Repositories;
 using VideoEducation.Microservices.Shared.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +11,7 @@ builder.Services.AddOptionsExt();
 builder.Services.AddDatabaseServiceExt();
 builder.Services.AddCommonServiceExt(typeof(Program));
 builder.Services.AddVersioningExt();
+builder.Services.AddCategoriesExt();
 var app = builder.Build();
 
 app.AddCategoryGroupEndpointExt(app.AddVersionSetExt());

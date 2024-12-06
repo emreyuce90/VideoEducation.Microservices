@@ -10,7 +10,7 @@ POST {{baseAddress}}/api/v1.0/categories
 Accept: application/json
 Content-Type:application/json
 {
-  "name":"Category Versioned"
+  "name":"Elektronik"
 }
 ###
 GET {{baseAddress}}/api/categories/{{categoryId}}

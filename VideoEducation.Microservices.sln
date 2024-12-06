@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VideoEducation.Microservice
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "basket", "basket", "{A22F62C4-2C7E-4EDA-9E28-B7312F175102}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoEducation.Microservices.Basket.API", "src\services\basket\VideoEducation.Microservices.Basket.API\VideoEducation.Microservices.Basket.API.csproj", "{B026984C-F9D1-41C1-825C-79F18570F663}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VideoEducation.Microservices.Basket.API", "src\services\basket\VideoEducation.Microservices.Basket.API\VideoEducation.Microservices.Basket.API.csproj", "{B026984C-F9D1-41C1-825C-79F18570F663}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.Test", "..\Microservices.Test\Microservices.Test.csproj", "{13D7BA95-FB48-4B7A-9C2A-91E89732956E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +45,10 @@ Global
 		{B026984C-F9D1-41C1-825C-79F18570F663}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B026984C-F9D1-41C1-825C-79F18570F663}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B026984C-F9D1-41C1-825C-79F18570F663}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13D7BA95-FB48-4B7A-9C2A-91E89732956E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13D7BA95-FB48-4B7A-9C2A-91E89732956E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13D7BA95-FB48-4B7A-9C2A-91E89732956E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13D7BA95-FB48-4B7A-9C2A-91E89732956E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
